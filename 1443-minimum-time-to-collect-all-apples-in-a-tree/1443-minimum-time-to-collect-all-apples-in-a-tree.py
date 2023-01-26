@@ -1,8 +1,7 @@
+from collections import defaultdict
 class Solution:
-    
-    
     def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
-        h = [[] for _ in range(0,n)]
+        h = defaultdict(list)
         for e1,e2 in edges:
             h[e1].append(e2)
             h[e2].append(e1)
