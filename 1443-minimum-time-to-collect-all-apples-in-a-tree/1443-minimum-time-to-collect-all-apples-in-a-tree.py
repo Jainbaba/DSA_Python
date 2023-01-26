@@ -1,19 +1,5 @@
 class Solution:
-    def helper(self,h,visited,hasApple,idx):
-        appletime = 0
-        visited[idx] = True
-        
-        for i in h[idx]:
-            if not visited[i]:
-                appletime += self.helper(h,visited,hasApple,i)
-        
-        if idx == 0:
-            return appletime
-        
-        if hasApple[idx] or appletime > 0:
-            appletime += 2
-            
-        return appletime
+    
     
     def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
         h = [[] for _ in range(0,n)]
@@ -21,7 +7,18 @@ class Solution:
             h[e1].append(e2)
             h[e2].append(e1)
         visited = [False] * n
-        return self.helper(h,visited,hasApple,0)
+
+        def dfs(curr, par):
+            curr_amount = 0
+            for node in h[curr]:
+                if node == par:
+                    continue
+                child = dfs(node, curr)
+                if hasApple[node] or child > 0:
+                    curr_amount += 2 + child
+            return curr_amount
+
+        return dfs(0,-1)
             
         
         
