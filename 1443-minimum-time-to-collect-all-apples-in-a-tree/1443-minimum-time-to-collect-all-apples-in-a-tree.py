@@ -5,7 +5,6 @@ class Solution:
         for e1,e2 in edges:
             h[e1].append(e2)
             h[e2].append(e1)
-        visited = [False] * n
 
         def dfs(curr, par):
             curr_amount = 0
