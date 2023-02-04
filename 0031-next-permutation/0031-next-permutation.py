@@ -1,11 +1,16 @@
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
-        for i in range(len(nums)-1, 0, -1):
-            if nums[i] > nums[i-1]: 
-                nums[i:] = sorted(nums[i:])
-                
-                for k in range(i, len(nums)):
-                    if nums[k] > nums[i-1]:
-                        nums[k], nums[i-1] = nums[i-1], nums[k]
+        i = len(nums) - 2
+        while(i > -1):
+            if nums[i] < nums[i+1]:
+                for j in range(len(nums)-1,i,-1):
+                    if nums[i] < nums[j]:
+                        nums[i],nums[j] = nums[j],nums[i]
+                        nums[i+1:] = sorted(nums[i+1:])
                         return nums
+            i-=1
         return nums.reverse()
+                        
+            
+            
+    
