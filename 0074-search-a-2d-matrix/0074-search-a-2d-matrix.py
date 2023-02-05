@@ -5,11 +5,9 @@ class Solution:
         col = len(matrix[0])
         while(l <= h):
             mid = l + ((h - l) // 2)
-            x = mid // col
-            y = mid % col
-            if target > matrix[x][y]:
+            if target > matrix[mid // col][mid % col]:
                 l = mid + 1   
-            elif target == matrix[x][y]:
+            elif target == matrix[mid // col][mid % col]:
                 return True
             else:
                 h = mid - 1
