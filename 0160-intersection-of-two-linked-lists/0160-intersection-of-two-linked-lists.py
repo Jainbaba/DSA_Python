@@ -9,13 +9,7 @@ class Solution:
         d1 = headA
         d2 = headB
         while d1 != d2:
-            if not d1:
-                d1 = headB
-            if not d2:
-                d2 = headA  
-            if d1 == d2:
-                break
-            d1 = d1.next
-            d2 = d2.next
+            d1 = headB if d1 == None else d1.next
+            d2 = headA if d2 == None else d2.next
         return d1 
         
