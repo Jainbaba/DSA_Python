@@ -4,10 +4,9 @@ class Solution:
         maxi = 0
         for i in nums:
             sumi += i
-            if  i == 0:
-                maxi = max(maxi,sumi)
+            maxi = max(maxi,sumi)
+            if i == 0:
                 sumi = 0
-        maxi = max(maxi,sumi)
         return maxi
             
         
