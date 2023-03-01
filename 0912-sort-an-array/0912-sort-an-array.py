@@ -1,26 +1,28 @@
-class Solution:
-    def heapify(self,arr, n, i):
-        largest = i  
-        l = 2 * i + 1  
-        r = 2 * i + 2
-        if l < n and arr[i] < arr[l]:
-            largest = l
-            
-        if r < n and arr[largest] < arr[r]:
-            largest = r
-            
-        if largest != i:
-            (arr[i], arr[largest]) = (arr[largest], arr[i])
-            self.heapify(arr, n, largest)
-        
+class Solution:        
     def sortArray(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        for i in range((n//2)-1,-1,-1):
-            self.heapify(nums,n,i)
-        
-        for i in range(n - 1, 0, -1):
-            (nums[i], nums[0]) = (nums[0], nums[i]) 
-            self.heapify(nums, i, 0)
-        return nums
+        if len(nums) == 1:
+            return nums
     
+        left = self.sortArray(nums[:len(nums)//2])
+        right = self.sortArray(nums[len(nums)//2:])
+        return self.merge(left, right)
+    
+    def merge(self, left, right):
+        arr = []
+        l = 0
+        r = 0
+        while l<len(left) and r<len(right):
+            if left[l] <= right[r]:
+                arr.append(left[l])
+                l += 1
+            else:
+                arr.append(right[r])
+                r += 1
+        
+        for i in range(l, len(left)):
+            arr.append(left[i])
+        for i in range(r, len(right)):
+            arr.append(right[i])
+        
+        return arr
    
